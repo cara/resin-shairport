@@ -11,25 +11,24 @@ RUN apt-get update \
 		libdbus-1-dev \
 		libexpat-dev \
 		rfkill \
-	&& rm -rf /var/lib/apt/lists/*
 
 
  ###shairport-sync
 
 RUN apt-get install -y \
-  build-essential \
-  git \
-  autoconf \
-  automake \
-  libtool \
-  libdaemon-dev \
-  libasound2-dev \
-  libpopt-dev \
-  libconfig-dev \
-  avahi-daemon \
-  libavahi-client-dev \
-  libssl-dev \
-  libsoxr-dev
+	build-essential \
+	git \
+	autoconf \
+	automake \
+	libtool \
+	libdaemon-dev \
+	libasound2-dev \
+	libpopt-dev \
+	libconfig-dev \
+	avahi-daemon \
+	libavahi-client-dev \
+	libssl-dev \
+	libsoxr-dev
 
 ARG SHAIRPORT_VERSION=2.8.6
 
