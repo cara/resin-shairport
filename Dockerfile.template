@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-debian:latest
+FROM resin/%%RESIN_MACHINE_NAME%%-python:jessie
 
 ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
 RUN echo "deb http://ftp2.de.debian.org/debian/ jessie main contrib non-free" >> "/etc/apt/sources.list"
@@ -43,7 +43,7 @@ RUN apt-get install  -qq -yf \
 	libsoxr-dev
 
 
-ENV PYTHON=/usr/bin/python
+#ENV PYTHON=/usr/bin/python
 
 
 ENV NODE_VERSION 5.7.1
