@@ -1,6 +1,7 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-debian:latest
 
 ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
+RUN echo "deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpix" >> "/etc/apt/sources.list"
 
 RUN apt-get update \
 	&& apt-get install -y \
