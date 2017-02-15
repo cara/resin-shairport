@@ -7,15 +7,19 @@ RUN echo "deb http://ftp2.de.debian.org/debian/ jessie main contrib non-free" >>
 
 
 
-RUN apt-get -qq update \
-	&& apt-get install -y \
-		dnsmasq \
-		hostapd \
-		iproute2 \
-		iw \
-		libdbus-1-dev \
-		libexpat-dev \
-		rfkill
+RUN apt-get -qq update 
+
+RUN apt-get install -qq -y libpopt-dev 
+
+
+RUN apt-get install -y \
+	dnsmasq \
+	hostapd \
+	iproute2 \
+	iw \
+	libdbus-1-dev \
+	libexpat-dev \
+	rfkill
 
 
  ###shairport-sync
