@@ -1,7 +1,11 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-debian:latest
 
 ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
-RUN echo "deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free" >> "/etc/apt/sources.list"
+RUN echo "deb http://ftp2.de.debian.org/debian/ jessie main contrib non-free" >> "/etc/apt/sources.list"
+
+
+
+
 
 RUN apt-get update \
 	&& apt-get install -y \
@@ -26,12 +30,12 @@ RUN apt-get install -yf \
 	libdaemon-dev \
 	libasound2-dev \
 	libconfig-dev \
+	libpopt-dev \
 	avahi-daemon \
 	libavahi-client-dev \
 	libssl-dev \
 	libsoxr-dev
 
-#	libpopt-dev \
 
 
 ARG SHAIRPORT_VERSION=2.8.6
@@ -51,10 +55,10 @@ RUN curl -Lo /tmp/$SHAIRPORT_VERSION.tar.gz https://github.com/mikebrady/shairpo
       --with-soxr \
       --with-systemd
     && make \
-    && getent group shairport-sync &>/dev/null || sudo groupadd -r shairport-sync >/dev/null
-    && getent passwd shairport-sync &> /dev/null || sudo useradd -r -M -g shairport-sync -s /usr/bin/nologin -G audio shairport-sync >/dev/null
+    && getent group shairport-sync &>/dev/null || sudo groupadd -r shairport-sync >/dev/null  \
+    && getent passwd shairport-sync &> /dev/null || sudo useradd -r -M -g shairport-sync -s /usr/bin/nologin -G audio shairport-sync >/dev/null  \
     && make install \
-    && rm -R -f /tmp/shairport-sync-$SHAIRPORT_VERSION \
+    && rm -R -f /tmp/shairport-sync-$SHAIRPORT_VERSION 
 
 RUN systemctl enable shairport-sync
 
