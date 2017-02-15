@@ -10,14 +10,6 @@ RUN echo "deb http://ftp2.de.debian.org/debian/ jessie main contrib non-free" >>
 RUN apt-get -qq update 
 
 
-ENV NODE_VERSION 5.7.1
-
-RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-armv7l.tar.gz" \
-	&& echo "2370e6ad65dedc1eadcc1b3a481e922a8b5afacee9e90eb6700fee876eb59a5b  node-v5.7.1-linux-armv7l.tar.gz" | sha256sum -c - \
-	&& tar -xzf "node-v$NODE_VERSION-linux-armv7l.tar.gz" -C /usr/local --strip-components=1 \
-	&& rm "node-v$NODE_VERSION-linux-armv7l.tar.gz" \
-	&& npm config set unsafe-perm true -g --unsafe-perm \
-	&& rm -rf /tmp/*
 
 
 RUN apt-get install -qq -y libpopt-dev 
@@ -49,6 +41,16 @@ RUN apt-get install  -qq -yf \
 	libavahi-client-dev \
 	libssl-dev \
 	libsoxr-dev
+
+	
+ENV NODE_VERSION 5.7.1
+
+RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-armv7l.tar.gz" \
+	&& echo "2370e6ad65dedc1eadcc1b3a481e922a8b5afacee9e90eb6700fee876eb59a5b  node-v5.7.1-linux-armv7l.tar.gz" | sha256sum -c - \
+	&& tar -xzf "node-v$NODE_VERSION-linux-armv7l.tar.gz" -C /usr/local --strip-components=1 \
+	&& rm "node-v$NODE_VERSION-linux-armv7l.tar.gz" \
+	&& npm config set unsafe-perm true -g --unsafe-perm \
+	&& rm -rf /tmp/*
 
 
 
