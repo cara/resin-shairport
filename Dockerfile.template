@@ -42,6 +42,8 @@ RUN apt-get install  -qq -yf \
 
 
 ARG SHAIRPORT_VERSION=2.8.6
+RUN getent group shairport-sync &>/dev/null || sudo groupadd -r shairport-sync >/dev/null  \
+RUN getent passwd shairport-sync &> /dev/null || sudo useradd -r -M -g shairport-sync -s /usr/bin/nologin -G audio shairport-sync >/dev/null  \
 
 RUN curl -Lo /tmp/$SHAIRPORT_VERSION.tar.gz https://github.com/mikebrady/shairport-sync/archive/$SHAIRPORT_VERSION.tar.gz \
       && tar -xzf /tmp/$SHAIRPORT_VERSION.tar.gz -C /tmp \
@@ -59,11 +61,9 @@ RUN curl -Lo /tmp/$SHAIRPORT_VERSION.tar.gz https://github.com/mikebrady/shairpo
       --with-systemd \
     && make \
     && make install \
-    && getent group shairport-sync &>/dev/null || sudo groupadd -r shairport-sync >/dev/null  \
-    && getent passwd shairport-sync &> /dev/null || sudo useradd -r -M -g shairport-sync -s /usr/bin/nologin -G audio shairport-sync >/dev/null  \
     && rm -R -f /tmp/shairport-sync-$SHAIRPORT_VERSION 
 
-RUN systemctl enable shairport-sync
+#RUN systemctl enable shairport-sync
 
 COPY shairport.sh /start
 RUN chmod +x /start
