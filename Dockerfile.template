@@ -9,6 +9,7 @@ RUN echo "deb http://ftp2.de.debian.org/debian/ jessie main contrib non-free" >>
 
 RUN apt-get -qq update 
 
+RUN apt-get install -qq -y libpopt-dev 
 
 # here we install apt dependencies. We also remove the apt lists in the same step,
 # this reduces the size of the docker image.
@@ -23,7 +24,6 @@ RUN mkdir /var/run/sshd \
     && sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
     
 
-RUN apt-get install -qq -y libpopt-dev 
 
 
 RUN apt-get install -y \
