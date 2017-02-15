@@ -15,7 +15,7 @@ RUN apt-get update \
 
  ###shairport-sync
 
-RUN apt-get install -y \
+RUN apt-get install -yf \
 	build-essential \
 	git \
 	autoconf \
