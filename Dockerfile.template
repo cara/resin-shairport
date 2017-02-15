@@ -10,7 +10,7 @@ RUN apt-get update \
 		iw \
 		libdbus-1-dev \
 		libexpat-dev \
-		rfkill \
+		rfkill
 
 
  ###shairport-sync
