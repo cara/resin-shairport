@@ -34,7 +34,6 @@ RUN apt-get install -yf \
 	libdaemon-dev \
 	libasound2-dev \
 	libconfig-dev \
-	libpopt-dev \
 	avahi-daemon \
 	libavahi-client-dev \
 	libssl-dev \
