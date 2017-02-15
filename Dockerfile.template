@@ -61,7 +61,8 @@ RUN curl -Lo /tmp/$SHAIRPORT_VERSION.tar.gz https://github.com/mikebrady/shairpo
       --with-systemd \
     && make \
     && make install \
-    && rm -R -f /tmp/shairport-sync-$SHAIRPORT_VERSION 
+
+#&& rm -R -f /tmp/shairport-sync-$SHAIRPORT_VERSION 
 
 #RUN systemctl enable shairport-sync
 
