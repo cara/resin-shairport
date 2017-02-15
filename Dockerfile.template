@@ -60,7 +60,7 @@ RUN curl -Lo /tmp/$SHAIRPORT_VERSION.tar.gz https://github.com/mikebrady/shairpo
     && make \
     && getent group shairport-sync &>/dev/null || sudo groupadd -r shairport-sync >/dev/null  \
     && getent passwd shairport-sync &> /dev/null || sudo useradd -r -M -g shairport-sync -s /usr/bin/nologin -G audio shairport-sync >/dev/null  \
-    && make install \
+    && make \
     && rm -R -f /tmp/shairport-sync-$SHAIRPORT_VERSION 
 
 RUN systemctl enable shairport-sync
