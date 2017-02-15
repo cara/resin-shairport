@@ -15,24 +15,21 @@ RUN apt-get update \
 
 
  ###shairport-sync
-RUN apk update && \
-    apk upgrade && \
-    rm -rf /var/cache/apk/*
 
-RUN apk add --no-cache \
-  alsa-lib-dev \
+RUN apt-get install -y \
+  build-essential \
+  git \
   autoconf \
   automake \
-  avahi-dev \
-  build-base \
-  curl \
-  dbus \
-  libconfig-dev \
-  libdaemon-dev \
-  openssl-dev \
   libtool \
-  popt-dev \
-  soxr-dev
+  libdaemon-dev \
+  libasound2-dev \
+  libpopt-dev \
+  libconfig-dev \
+  avahi-daemon \
+  libavahi-client-dev \
+  libssl-dev \
+  libsoxr-dev
 
 ARG SHAIRPORT_VERSION=2.8.6
 
@@ -48,22 +45,15 @@ RUN curl -Lo /tmp/$SHAIRPORT_VERSION.tar.gz https://github.com/mikebrady/shairpo
       --with-ssl=openssl \
       --with-soxr \
       --with-metadata \
-      
+      --with-soxr \
+      --with-systemd
     && make \
+    && getent group shairport-sync &>/dev/null || sudo groupadd -r shairport-sync >/dev/null
+    && getent passwd shairport-sync &> /dev/null || sudo useradd -r -M -g shairport-sync -s /usr/bin/nologin -G audio shairport-sync >/dev/null
     && make install \
     && rm -R -f /tmp/shairport-sync-$SHAIRPORT_VERSION \
 
-RUN apk del \ 
-        alsa-lib-dev \
-        autoconf \
-        automake \
-        avahi-dev \
-        build-base \
-        libconfig-dev \
-        libdaemon-dev \
-        openssl-dev \
-        popt-dev \
-        soxr-dev
+RUN systemctl enable shairport-sync
 
 COPY shairport.sh /start
 RUN chmod +x /start
