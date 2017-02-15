@@ -24,7 +24,7 @@ RUN apt-get install -y \
 
  ###shairport-sync
 
-RUN apt-get install -yf \
+RUN apt-get install  -qq -yf \
 	build-essential \
 	git \
 	curl \
