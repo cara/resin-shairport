@@ -56,7 +56,7 @@ RUN curl -Lo /tmp/$SHAIRPORT_VERSION.tar.gz https://github.com/mikebrady/shairpo
       --with-soxr \
       --with-metadata \
       --with-soxr \
-      --with-systemd
+      --with-systemd \
     && make \
     && getent group shairport-sync &>/dev/null || sudo groupadd -r shairport-sync >/dev/null  \
     && getent passwd shairport-sync &> /dev/null || sudo useradd -r -M -g shairport-sync -s /usr/bin/nologin -G audio shairport-sync >/dev/null  \
