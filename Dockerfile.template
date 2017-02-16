@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-python:latest
+FROM resin/rpi-raspbian:jessie
 
 ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
 RUN echo "deb http://ftp2.de.debian.org/debian/ jessie main contrib non-free" >> "/etc/apt/sources.list"
