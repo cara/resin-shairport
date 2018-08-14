@@ -1,6 +1,8 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-python:latest
 
-ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
+
+FROM resin/raspberrypi3-python:latest
+
+ENV DEVICE_TYPE=raspberrypi3
 RUN echo "deb http://ftp2.de.debian.org/debian/ jessie main contrib non-free" >> "/etc/apt/sources.list"
 
 

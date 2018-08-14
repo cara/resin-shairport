@@ -4,3 +4,9 @@ port: 22
 ignore:
   - .git
   - node_modules/
+local_resinos:
+  app-name: wifi-shairport
+  build-triggers:
+    - Dockerfile: 4876e0e454f20f54c717e11dbc4867ca0eb041f306cb750d408d3a604fa2b573
+    - package.json: 33a2a9dd6c8704ce22c01e2f3f6bffb9ffcfdfec43a6a60a0c6197bb6bec90a6
+  environment: []
